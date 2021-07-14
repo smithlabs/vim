@@ -1,15 +1,23 @@
-" --- Core settings
+" ---------------------------------------------------------------------------------------------------------------------
+" CORE SETTINGS
+" Settings that dictate the basic behavior I like
+" ---------------------------------------------------------------------------------------------------------------------
 " Leader key spacebar
 let mapleader="\<Space>"
 
-" --- FREQUENT KEYBINDINGS
+" ---------------------------------------------------------------------------------------------------------------------
+" FREQUENTLY USED KEYBINDINGS
+" ---------------------------------------------------------------------------------------------------------------------
 " toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Source vimrc file
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" --- EDITING KEYBINDINGS
+" ---------------------------------------------------------------------------------------------------------------------
+" EDITING RELATED KEYBINDINGS
+" Bindings related to editing the document
+" ---------------------------------------------------------------------------------------------------------------------
 " highlight last inserted text
 nnoremap gV `[v`]
 
@@ -20,7 +28,10 @@ noremap Y y$
 nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
 vnoremap <Leader>rc y:%s/<C-r>"/
 
-" --- PLUGINS 
+" ---------------------------------------------------------------------------------------------------------------------
+" PLUGINS 
+" Plugins and settings
+" ---------------------------------------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'SirVer/ultisnips'
@@ -44,7 +55,9 @@ let g:UltiSnipsEditSplit="vertical"
 " Initialize plugin system
 call plug#end()
 
-" --- COLOR AND TERMINAL SETTINGS
+" ---------------------------------------------------------------------------------------------------------------------
+" COLOR AND TERMINAL SETTINGS
+" ---------------------------------------------------------------------------------------------------------------------
 colorscheme smithlabs
 if &term =~# '^screen'
   " Fix for wrong colors inside tmux
@@ -56,6 +69,6 @@ set t_Co=256
 source $HOME/.vim/statusline.vim
 source $HOME/.vim/tabline.vim
 
-" --- END OF SETTINGS
-
-" --- SETTINGS THAT MUST BE AT THE BOTTOM
+" ---------------------------------------------------------------------------------------------------------------------
+" END OF SETTINGS
+" ---------------------------------------------------------------------------------------------------------------------
