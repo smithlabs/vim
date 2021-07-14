@@ -2,6 +2,10 @@
 " CORE SETTINGS
 " Settings that dictate the basic behavior I like
 " ---------------------------------------------------------------------------------------------------------------------
+syntax on
+filetype indent plugin on
+set ruler
+
 " Leader key spacebar
 let mapleader="\<Space>"
 
@@ -11,6 +15,12 @@ let mapleader="\<Space>"
 " toggle undotree
 nnoremap <leader>u :UndotreeToggle<CR>
 
+" Save the file
+noremap <Leader>s :update<CR>
+" ---------------------------------------------------------------------------------------------------------------------
+" VIMRC RELATED KEYBINDINGS
+" Tricks related to modifiying or reloading .vimrc
+" ---------------------------------------------------------------------------------------------------------------------
 " Source vimrc file
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
@@ -28,8 +38,23 @@ noremap Y y$
 nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
 vnoremap <Leader>rc y:%s/<C-r>"/
 
+" strip all trailing whitespace in the current file
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Sudo save
+cnoremap w!! w !sudo tee > /dev/null %
+
 " ---------------------------------------------------------------------------------------------------------------------
-" PLUGINS 
+" YAML EDITING SETTINGS
+" ---------------------------------------------------------------------------------------------------------------------
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Templates
+:autocmd BufNewFile *.yaml 0r ~/.vim/templates/kubernetes.yaml
+:autocmd BufNewFile *.yml 0r ~/.vim/templates/kubernetes.yaml
+" ---------------------------------------------------------------------------------------------------------------------
+" PLUGINS
 " Plugins and settings
 " ---------------------------------------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
