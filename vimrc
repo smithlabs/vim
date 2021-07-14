@@ -75,6 +75,7 @@ autocmd FileType yml setlocal ts=2 sts=2 sw=2 expandtab
 " Templates
 :autocmd BufNewFile *.yaml 0r ~/.vim/templates/kubernetes.yaml
 :autocmd BufNewFile *.yml 0r ~/.vim/templates/kubernetes.yaml
+
 " ---------------------------------------------------------------------------------------------------------------------
 " PLUGINS
 " Plugins and settings
@@ -104,7 +105,7 @@ call plug#end()
 
 " CTRL+SPACE Context menu for COC
 inoremap <silent><expr> <c-space> coc#refresh()
-"
+
 " ---------------------------------------------------------------------------------------------------------------------
 " COLOR AND TERMINAL SETTINGS
 " ---------------------------------------------------------------------------------------------------------------------
