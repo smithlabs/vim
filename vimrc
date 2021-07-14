@@ -1,6 +1,17 @@
 " My color scheme
 colorscheme smithlabs
 
+" Color and terminal settings
+if &term =~# '^screen'
+  " Fix for wrong colors inside tmux
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+endif
+set termguicolors
+set t_Co=256
+source $HOME/.vim/statusline.vim
+source $HOME/.vim/tabline.vim
+
 " Plugins
 call plug#begin('~/.vim/plugged')
 Plug 'andrewstuart/vim-kubernetes'
