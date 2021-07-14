@@ -2,9 +2,30 @@
 " CORE SETTINGS
 " Settings that dictate the basic behavior I like
 " ---------------------------------------------------------------------------------------------------------------------
-syntax on
 filetype indent plugin on
+filetype plugin on
+set colorcolumn=80
+set cursorline
+set expandtab
+set hidden
+set incsearch
+set lazyredraw
+set nobackup
+set nocompatible
+set noswapfile
+set number
+set relativenumber
 set ruler
+set showcmd
+set showmatch
+set smartindent
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+set undodir=~/.vim/undodir
+set undofile
+set wildmenu
+syntax on
 
 " Leader key spacebar
 let mapleader="\<Space>"
@@ -17,6 +38,7 @@ nnoremap <leader>u :UndotreeToggle<CR>
 
 " Save the file
 noremap <Leader>s :update<CR>
+
 " ---------------------------------------------------------------------------------------------------------------------
 " VIMRC RELATED KEYBINDINGS
 " Tricks related to modifiying or reloading .vimrc
@@ -80,6 +102,9 @@ let g:UltiSnipsEditSplit="vertical"
 " Initialize plugin system
 call plug#end()
 
+" CTRL+SPACE Context menu for COC
+inoremap <silent><expr> <c-space> coc#refresh()
+"
 " ---------------------------------------------------------------------------------------------------------------------
 " COLOR AND TERMINAL SETTINGS
 " ---------------------------------------------------------------------------------------------------------------------
