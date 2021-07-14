@@ -1,4 +1,26 @@
-" Plugins
+" --- Core settings
+" Leader key spacebar
+let mapleader="\<Space>"
+
+" --- FREQUENT KEYBINDINGS
+" toggle undotree
+nnoremap <leader>u :UndotreeToggle<CR>
+
+" Source vimrc file
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" --- EDITING KEYBINDINGS
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" Make Y yank everything from the cursor to the end of the line.
+noremap Y y$
+
+" Allows you to easily replace the current word and all its occurrences.
+nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
+vnoremap <Leader>rc y:%s/<C-r>"/
+
+" --- PLUGINS 
 call plug#begin('~/.vim/plugged')
 Plug 'andrewstuart/vim-kubernetes'
 Plug 'SirVer/ultisnips'
@@ -22,7 +44,7 @@ let g:UltiSnipsEditSplit="vertical"
 " Initialize plugin system
 call plug#end()
 
-" Color and terminal settings
+" --- COLOR AND TERMINAL SETTINGS
 colorscheme smithlabs
 if &term =~# '^screen'
   " Fix for wrong colors inside tmux
@@ -33,3 +55,7 @@ set termguicolors
 set t_Co=256
 source $HOME/.vim/statusline.vim
 source $HOME/.vim/tabline.vim
+
+" --- END OF SETTINGS
+
+" --- SETTINGS THAT MUST BE AT THE BOTTOM
