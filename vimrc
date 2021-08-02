@@ -25,7 +25,9 @@ set ttyfast
 set undodir=~/.vim/undodir
 set undofile
 set wildmenu
+set autowrite
 syntax on
+
 
 " Leader key spacebar
 let mapleader="\<Space>"
@@ -37,7 +39,7 @@ let mapleader="\<Space>"
 nnoremap <leader>u :UndotreeToggle<CR>
 
 " Save the file
-noremap <Leader>s :update<CR>
+noremap <Leader>s :write<CR>
 
 " ---------------------------------------------------------------------------------------------------------------------
 " VIMRC RELATED KEYBINDINGS
@@ -67,6 +69,34 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 cnoremap w!! w !sudo tee > /dev/null %
 
 " ---------------------------------------------------------------------------------------------------------------------
+" VIM-GO
+" Bindings related to Golang
+" ---------------------------------------------------------------------------------------------------------------------
+map <C-n> :cnext<CR>
+map <C-m> :cprevious<CR>
+nnoremap <leader>a :cclose<CR>
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>t  <Plug>(go-test)
+autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
+autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
+let g:go_metalinter_autosave = 1
+let g:go_metalinter_deadline = "5s"
+let g:go_fmt_command = "goimports"
+
+" run :GoBuild or :GoTestCompile based on the go file
+function! s:build_go_files()
+  let l:file = expand('%')
+  if l:file =~# '^\f\+_test\.go$'
+    call go#test#Test(0, 1)
+  elseif l:file =~# '^\f\+\.go$'
+    call go#cmd#Build(0)
+  endif
+endfunction
+
+autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+
+" ---------------------------------------------------------------------------------------------------------------------
 " YAML EDITING SETTINGS
 " ---------------------------------------------------------------------------------------------------------------------
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -86,13 +116,13 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-unimpaired'
 Plug 'mbbill/undotree'
-Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'git@github.com:kien/ctrlp.vim.git'
-Plug 'git@github.com:Valloric/YouCompleteMe.git'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'AndrewRadev/splitjoin.vim'
 
 let g:UltiSnipsExpandTrigger="<tab>"
 " Use tab to switch to the next trigger point, shit+tab the previous trigger point
