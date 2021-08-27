@@ -58,6 +58,25 @@ nnoremap gV `[v`]
 " Make Y yank everything from the cursor to the end of the line.
 noremap Y y$
 
+" Keep things centered as you jump around or join lines. Feels more natural.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo break points for each one of these marks, Makes undo more granular.
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+
+" Moving text a lot easier
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+inoremap <C-j> <esc>:m .+1<CR>==
+inoremap <C-k> <esc>:m .-2<CR>==
+noremap <leader>j :m .+1<CR>==
+noremap <leader>k :m .-2<CR>==
+
 " Allows you to easily replace the current word and all its occurrences.
 nnoremap <Leader>rc :%s/\<<C-r><C-w>\>/
 vnoremap <Leader>rc y:%s/<C-r>"/
